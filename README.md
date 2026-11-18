@@ -1,6 +1,6 @@
-# Lattice – Comprehensive Documentation
+# Ollo – Comprehensive Documentation
 
-This document describes **Lattice**: an EVM-based, on-chain limit order book system designed for trading between two ERC20 tokens. Lattice’s contracts are written in Solidity and utilize [Foundry](https://book.getfoundry.sh/) for building, testing, and deployment.
+This document describes **Ollo**: an EVM-based, on-chain limit order book system designed for trading between two ERC20 tokens. Ollo’s contracts are written in Solidity and utilize [Foundry](https://book.getfoundry.sh/) for building, testing, and deployment.
 
 - [Overview](#overview)
 - [System Components](#system-components)
@@ -16,17 +16,17 @@ This document describes **Lattice**: an EVM-based, on-chain limit order book sys
 
 ## Overview
 
-A Lattice market supports trading between a pair of `ERC20` tokens: **`index`** and **`numéraire`**.
+A Ollo market supports trading between a pair of `ERC20` tokens: **`index`** and **`numéraire`**.
 
 #### Key Concepts
 
 **Numéraire**: a _numéraire_ is a standard benchmark or **reference asset** against which all other assets are measured or valued. It serves as the **unit of account**, facilitating **comparative valuation** and enhancing liquidity by offering a common denominator.
 
-> Typically, fiat currencies or stable assets serve as numéraires in derivative pricing models. For instance, in traditional foreign exchange markets, one might select the U.S. Dollar as a numéraire to price all other currencies. In DeFi systems like Lattice, the numéraire may be a stablecoin or other liquid, low-volatility token, fulfilling the same role of a consistent measure of value. The numéraire serves as the primary asset for valuation, providing a stable baseline for measuring the value of the index token.
+> Typically, fiat currencies or stable assets serve as numéraires in derivative pricing models. For instance, in traditional foreign exchange markets, one might select the U.S. Dollar as a numéraire to price all other currencies. In DeFi systems like Ollo, the numéraire may be a stablecoin or other liquid, low-volatility token, fulfilling the same role of a consistent measure of value. The numéraire serves as the primary asset for valuation, providing a stable baseline for measuring the value of the index token.
 
 **Index**: an _index_ refers to a **tradable asset** or a **composite representation of multiple assets**, which may include synthetic tokens, risk-bearing assets, or aggregated derivatives.
 
-> In traditional markets, indices are frequently constructed to track the performance of a particular basket of assets, such as the S&P 500. Within Lattice, the index is often a synthetic or volatile token whose value is measured relative to the numéraire, embodying the directional exposure or risk component of a trading pair. The relationship between the numéraire and the index is akin to the pricing of derivatives, where the index’s value fluctuates relative to the stability of the numéraire. This dynamic is fundamental to the construction of various financial instruments and structured products.
+> In traditional markets, indices are frequently constructed to track the performance of a particular basket of assets, such as the S&P 500. Within Ollo, the index is often a synthetic or volatile token whose value is measured relative to the numéraire, embodying the directional exposure or risk component of a trading pair. The relationship between the numéraire and the index is akin to the pricing of derivatives, where the index’s value fluctuates relative to the stability of the numéraire. This dynamic is fundamental to the construction of various financial instruments and structured products.
 
 **Limit Order**: a *limit order* placed at a specific price (in units of `numéraire / index`). Each price level is managed with **FIFO (first-in-first-out)** queues for bids and asks. When placing a new limit order:
 
@@ -273,7 +273,7 @@ A simplified (abstract) ERC20 contract implementing core logic:
 - Manages `balances` and `allowances`.
 - Standard transfer, `transferFrom`, and allowance patterns.
 - Hooks for `_beforeTokenTransfer` and `_afterTokenTransfer` for extended functionality.
-- In Lattice’s usage:
+- In Ollo’s usage:
   - **numéraire**: stable-like token.
   - **index**: synthetic or risk-like token.
 
@@ -283,7 +283,7 @@ This contract can be subclassed or replaced with real tokens in production.
 
 ## Usage
 
-Lattice uses [Foundry](https://book.getfoundry.sh/) for compilation, testing, and deployment. To further simplify interactions with the codebase, a `Makefile` is included for common tasks relating to foundry.
+Ollo uses [Foundry](https://book.getfoundry.sh/) for compilation, testing, and deployment. To further simplify interactions with the codebase, a `Makefile` is included for common tasks relating to foundry.
 
 How to build, test, format, and snapshot the code:
 
@@ -346,7 +346,7 @@ External dependencies are managed via Soldeer, a **Solidity Package Manager** wr
 
 ## Performance and Gas Usage
 
-An extensive test suite measures how Lattice performs under various scenarios (e.g., placing bids or asks, partial fills, cancellations). Below is a general overview of typical gas consumption:
+An extensive test suite measures how Ollo performs under various scenarios (e.g., placing bids or asks, partial fills, cancellations). Below is a general overview of typical gas consumption:
 
 1. **Placing a Limit Bid**
 
@@ -393,4 +393,4 @@ An extensive test suite measures how Lattice performs under various scenarios (e
 
 ## Disclaimer
 
-This software is provided "as is" and "as available" without warranties of any kind, express or implied. The authors disclaim all liability for any loss or damage resulting from the use or misuse of this codebase. While Lattice has undergone extensive testing, its performance when integrated with other systems is not guaranteed. Users are advised to conduct their own thorough testing to ensure compatibility and expected functionality. Use at your own risk.
+This software is provided "as is" and "as available" without warranties of any kind, express or implied. The authors disclaim all liability for any loss or damage resulting from the use or misuse of this codebase. While Ollo has undergone extensive testing, its performance when integrated with other systems is not guaranteed. Users are advised to conduct their own thorough testing to ensure compatibility and expected functionality. Use at your own risk.
